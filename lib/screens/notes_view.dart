@@ -1,4 +1,3 @@
-import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:notes/blocs/notes_bloc.dart';
 import 'package:notes/models/Note.dart';
@@ -46,28 +45,16 @@ class _NotesListViewState extends State<NotesListView> {
             }
             if (snapshot.hasData) {
               return ListView.separated(
-                  itemBuilder: (context, index) => OpenContainer(
-                        closedElevation: 0,
-                        closedBuilder: (context, action) => ListTile(
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => NoteDetails(
-                                noteId: snapshot.data[index].id,
-                              ),
-                            ));
-                          },
-                          title: Text(snapshot.data[index].title),
-                        ),
-                        openBuilder: (context, action) => NoteDetails(),
+                  itemBuilder: (context, index) => ListTile(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => NoteDetails(
+                              noteId: snapshot.data[index].id,
+                            ),
+                          ));
+                        },
+                        title: Text(snapshot.data[index].title),
                       ),
-                  // itemBuilder: (context, index) => ListTile(
-                  //       onTap: () {
-                  //         Navigator.of(context).push(MaterialPageRoute(
-                  //           builder: (context) => NoteDetails(),
-                  //         ));
-                  //       },
-                  //       title: Text("Hello"),
-                  //     ),
                   separatorBuilder: (context, index) => Divider(
                         height: 0,
                       ),

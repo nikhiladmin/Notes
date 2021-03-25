@@ -61,7 +61,7 @@ class _NoteDetailsState extends State<NoteDetails> {
                     ],
                   );
                 } else {
-                  return Text("helo");
+                  return Text("Something went wrong!");
                 }
               }),
         ),

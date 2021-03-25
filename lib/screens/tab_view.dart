@@ -39,7 +39,10 @@ class _TabViewState extends State<TabView> {
               label: "Notes",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.note_add),
+              icon: Icon(
+                Icons.note_add,
+                color: Colors.purple,
+              ),
               label: "Add",
             ),
             BottomNavigationBarItem(
