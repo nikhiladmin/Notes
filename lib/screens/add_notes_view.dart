@@ -110,20 +110,20 @@ class _AddNotesState extends State<AddNotes> {
                         : () {
                             if (_formkey.currentState.validate()) {
                               _formkey.currentState.save();
-                              try {
+                              setState(() {
+                                _submiting = true;
+                              });
+
+                              NotesBloc().postNotes(_note).then((value) {
+                                Navigator.of(context)
+                                    .pushReplacement(MaterialPageRoute(
+                                  builder: (context) => TabView(),
+                                ));
+
                                 setState(() {
-                                  _submiting = true;
+                                  _submiting = false;
                                 });
-                                NotesBloc().postNotes(_note).then((value) {
-                                  Navigator.of(context)
-                                      .pushReplacement(MaterialPageRoute(
-                                    builder: (context) => TabView(),
-                                  ));
-                                  setState(() {
-                                    _submiting = false;
-                                  });
-                                });
-                              } catch (e) {
+                              }).catchError((e) {
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(SnackBar(
                                   content: Text("Somthing went wrong!"),
@@ -132,7 +132,7 @@ class _AddNotesState extends State<AddNotes> {
                                 setState(() {
                                   _submiting = false;
                                 });
-                              }
+                              });
                             }
                           },
                   ),

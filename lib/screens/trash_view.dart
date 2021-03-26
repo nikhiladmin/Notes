@@ -29,6 +29,11 @@ class _TrashViewState extends State<TrashView> {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("Somthing went wrong!"),
         behavior: SnackBarBehavior.floating,
+        action: SnackBarAction(
+            label: "RETRY",
+            onPressed: () async {
+              trash.addAll(await _notesBloc.getNotesTrash());
+            }),
       ));
     }
     setState(() {
