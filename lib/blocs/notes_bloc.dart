@@ -4,7 +4,7 @@ import 'package:notes/config/Strings.dart';
 import 'package:notes/models/Note.dart';
 import 'package:http/http.dart' as http;
 
-enum NotesEventType { GetList, GetTrash, Add, Delete }
+enum NotesEventType { GetList, GetTrash }
 
 class NotesBloc {
   final _stateStreamController = StreamController<List<Note>>();
@@ -24,9 +24,6 @@ class NotesBloc {
     _eventStream.listen((event) async {
       if (event == NotesEventType.GetList) {
         List<Note> notes = await getNotes();
-        if (!_eventStreamController.isClosed) _notesSink.add(notes);
-      } else if (event == NotesEventType.GetTrash) {
-        List<Note> notes = await getNotesTrash();
         if (!_eventStreamController.isClosed) _notesSink.add(notes);
       }
     });

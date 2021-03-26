@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notes/blocs/notes_bloc.dart';
 import 'package:notes/models/Note.dart';
-import './note_detail_view.dart';
 
 class TrashView extends StatefulWidget {
   @override
